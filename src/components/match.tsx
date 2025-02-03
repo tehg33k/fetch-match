@@ -1,6 +1,15 @@
-import { Box, TextField, Typography } from "@mui/material";
+import { Box, Button, TextField, Typography } from "@mui/material";
+import { getDogs } from "../fetch/dogs";
 
 export const Match = () => {
+  const fetchDogs = async () => {
+    try {
+      const res = await getDogs();
+      console.log(res);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <Box
       display={"flex"}
@@ -15,6 +24,7 @@ export const Match = () => {
       <Typography variant="body1" color="#000000">
         table goes down here...
       </Typography>
+      <Button onClick={fetchDogs}>Fetch Dogs</Button>
     </Box>
   );
 };

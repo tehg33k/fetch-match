@@ -10,7 +10,7 @@ export const Page: FC<IPage> = ({ children }) => {
 };
 
 const Wrapper = styled("div")`
-  height: calc(100vh - 64px);
   background-color: #f5f5f5;
-  max-width: 1200px;
+  display: flex;
+  justify-content: center;
 `;

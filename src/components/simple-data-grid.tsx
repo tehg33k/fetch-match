@@ -5,7 +5,7 @@ import {
   GridCallbackDetails,
 } from "@mui/x-data-grid";
 
-import { Box, Typography, useMediaQuery, styled } from "@mui/material";
+import { Box, Typography, styled } from "@mui/material";
 
 export interface SimpleDataGridProps
   extends Omit<
@@ -71,6 +71,11 @@ export const SimpleDataGrid = ({
           ),
         }}
         rowHeight={rowHeight ?? 35}
+        sx={{
+          "&.MuiDataGrid-root .MuiDataGrid-cell:focus-within": {
+            outline: "none !important",
+          },
+        }}
         {...props}
       />
     </GridWrapper>

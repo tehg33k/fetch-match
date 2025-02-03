@@ -35,7 +35,10 @@ export const Login: FC<ILogin> = ({ setIsLoggedIn }) => {
   return (
     <>
       <Card>
-        <CardHeader title="Login" />
+        <CardHeader
+          title="Login"
+          subheader="Enter your name and email to get started."
+        />
         <CardContent>
           <Box component="form" noValidate autoComplete="off">
             <Grid container spacing={2}>

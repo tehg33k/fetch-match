@@ -366,7 +366,7 @@ export const Match = () => {
       )}
       {matchedDog && (
         <Dialog
-          open={!!matchedDog}
+          open={matchedDog.length > 0}
           onClose={() => {
             setFavDogs([]);
             setMatchedDog(null);

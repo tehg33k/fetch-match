@@ -241,7 +241,11 @@ export const Match = () => {
           </Grid>
           <Grid container size={{ xs: 12, md: 9 }} alignItems={"center"}>
             <Grid size={{ xs: 12, md: 10 }}>
-              <Typography ml={1} textAlign={"left"} maxWidth={"600px"}>
+              <Typography
+                ml={1}
+                textAlign={"left"}
+                maxWidth={{ xs: "100%", md: "600px" }}
+              >
                 Select your favorite dogs by clicking the the heart icon and
                 then when you are ready, click the "Match" button to get matched
                 with a dog.
@@ -257,6 +261,7 @@ export const Match = () => {
                 disabled={favDogs.length === 0}
                 onClick={() => handleDogMatch()}
                 endIcon={<FavoriteBorder />}
+                sx={{ width: { xs: "100%", md: "auto" } }}
               >
                 Match
               </Button>

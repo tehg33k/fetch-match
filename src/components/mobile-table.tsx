@@ -342,6 +342,7 @@ const StyledAccordion = styled(Accordion, {
     overflow: "hidden",
     whiteSpace: "nowrap",
     width: "90%",
+    textAlign: "left",
   },
 
   [`& .${classes.buttonsWrapper}`]: {

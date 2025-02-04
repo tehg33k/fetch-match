@@ -42,7 +42,7 @@ export const Login = () => {
             mb={1}
             sx={{
               textShadow: "0 0 20px #00000059",
-              fontSize: "5rem",
+              fontSize: { xs: "3rem", md: "5rem" },
             }}
           >
             fetch<span style={{ fontWeight: "bold" }}>Match</span>
@@ -50,8 +50,8 @@ export const Login = () => {
           <PetsIcon
             sx={{
               color: "#0bc8e1",
-              fontSize: 90,
-              mb: 2.75,
+              fontSize: { xs: 50, md: 90 },
+              mb: { xs: 2, md: 2.75 },
               textShadow: "0 0 20px #00000059",
             }}
           />

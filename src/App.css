@@ -3,3 +3,53 @@
   text-align: center;
   width: 100%;
 }
+body {
+  background: radial-gradient(circle, rgba(125, 31, 112, 1) 0%, rgba(10, 3, 38, 1) 100%);
+}
+
+h1.MuiTypography-h1,
+h2.MuiTypography-h2 {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.MuiButtonBase-root.MuiButton-contained {
+  background: #FFA900;
+  color: rgb(9, 3, 37);
+  text-transform: none;
+  font-size: 16px;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.1) 0px 2px 4px -2px;
+
+  &:hover {
+    background: #890075;
+    color: #ffffff;
+  }
+
+  &:disabled {
+    background: #ffa90045;
+    color: #ffffff73;
+  }
+}
+
+.MuiButtonBase-root.MuiButton-text {
+  background-color: #300D38;
+  color: #ffffff;
+  text-transform: none;
+  font-size: 16px;
+  box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.1) 0px 2px 4px -2px;
+
+  &:hover {
+    background-color: #ffffff;
+    color: #090325;
+  }
+}
+
+.user-bar {
+  background-image: linear-gradient(to right, rgb(125, 31, 112), rgb(85, 22, 83), rgb(9, 3, 37));
+}

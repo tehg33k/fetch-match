@@ -1,9 +1,7 @@
-import { useState } from "react";
 import "./App.css";
-import { Login } from "./components/login";
-import { Match } from "./components/match";
 import { Page } from "./components/page";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { UserContextHandler } from "./context/user";
 
 function App() {
   const queryClient = new QueryClient({
@@ -17,14 +15,13 @@ function App() {
       },
     },
   });
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <Page>
-          {isLoggedIn ? <Match /> : <Login setIsLoggedIn={setIsLoggedIn} />}
-        </Page>
+        <UserContextHandler>
+          <Page />
+        </UserContextHandler>
       </QueryClientProvider>
     </>
   );

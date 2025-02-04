@@ -32,6 +32,7 @@ import {
 import { red } from "@mui/material/colors";
 import { useQuery } from "@tanstack/react-query";
 import CloseIcon from "@mui/icons-material/Close";
+import { UserBar } from "./userBar";
 
 export const Match = () => {
   const [favDogs, setFavDogs] = useState<string[]>([]);
@@ -126,8 +127,8 @@ export const Match = () => {
         field: "img",
         headerName: "",
         type: "string",
-        width: 200,
         sortable: false,
+        width: 200,
         renderCell: (params: GridRenderCellParams<IDog>) => {
           const { row } = params;
           return (
@@ -209,23 +210,43 @@ export const Match = () => {
 
   return (
     <>
-      <Box width={"100%"}>
-        <Grid container p={2} spacing={2} justifyContent={"center"}>
-          <Grid size={{ xs: 12 }} maxWidth={"600px"}>
-            <Typography variant="h2" color="#000000">
-              Match
-            </Typography>
-            <Typography color="#000000">
-              Favorite dogs by clicking the the heart icon and then when you are
-              ready, click the "Match" button to get matched with a dog.
-            </Typography>
-            <Button
-              variant="contained"
-              disabled={favDogs.length === 0}
-              onClick={() => handleDogMatch()}
+      <Box width={"100%"} height={{ xs: "100%", lg: "100vh" }}>
+        <UserBar />
+        <Grid container p={2} pb={0} spacing={2} flexDirection={"row"}>
+          <Grid size={{ xs: 12, md: 3 }}>
+            <Typography
+              variant="h2"
+              mb={1}
+              sx={{
+                textShadow: "0 0 20px #00000059",
+                fontSize: "2.75rem",
+              }}
             >
-              Match
-            </Button>
+              fetchMatch
+            </Typography>
+          </Grid>
+          <Grid container size={{ xs: 12, md: 9 }} alignItems={"center"}>
+            <Grid size={{ xs: 12, md: 10 }}>
+              <Typography ml={1} textAlign={"left"} maxWidth={"600px"}>
+                Select your favorite dogs by clicking the the heart icon and
+                then when you are ready, click the "Match" button to get matched
+                with a dog.
+              </Typography>
+            </Grid>
+            <Grid
+              container
+              size={{ xs: 12, md: 2 }}
+              justifyContent={"flex-end"}
+            >
+              <Button
+                variant="contained"
+                disabled={favDogs.length === 0}
+                onClick={() => handleDogMatch()}
+                endIcon={<FavoriteBorder />}
+              >
+                Match
+              </Button>
+            </Grid>
           </Grid>
         </Grid>
         <Grid container p={2} spacing={4}>
@@ -234,6 +255,8 @@ export const Match = () => {
             spacing={2}
             size={{ xs: 12, md: 3 }}
             alignContent={"start"}
+            sx={{ backgroundColor: "#ffffff", p: 2 }}
+            borderRadius={"8px"}
           >
             <Grid size={{ xs: 12 }}>
               <Autocomplete
@@ -256,12 +279,12 @@ export const Match = () => {
             </Grid>
             <Grid size={{ xs: 12 }}>
               <Button
-                variant="outlined"
                 fullWidth
                 onClick={() => {
                   setSearchQuery("");
                   fetchDogs();
                 }}
+                variant="text"
               >
                 Filter Dogs
               </Button>
@@ -269,11 +292,12 @@ export const Match = () => {
           </Grid>
           <Grid
             size={{ xs: 12, md: 9 }}
-            maxHeight={"60vh"}
+            maxHeight={{ xs: "100", md: "70vh" }}
             sx={{
               overflow: "auto",
               position: "relative",
             }}
+            borderRadius={"8px"}
           >
             {isLoadingDogs && (
               <Box
@@ -300,13 +324,25 @@ export const Match = () => {
               rows={dogs ?? []}
               rowHeight={150}
               onSortModelChange={(model) => onSortModelChange(model)}
+              hasMobileLayout
+              mobileProps={{
+                mobileCustomDefaultAccessor: (val: IDog) => {
+                  return (
+                    <DogImgMobile
+                      className={classes.dogImgMobile}
+                      src={val.img}
+                      alt="dog"
+                    />
+                  );
+                },
+              }}
             />
           </Grid>
           <Grid container spacing={2} size={{ xs: 12, md: 3 }}></Grid>
           <Grid container spacing={2} size={{ xs: 12, md: 9 }}>
             <Grid size={{ xs: 12, sm: 6 }}>
               <Button
-                variant="outlined"
+                variant="contained"
                 fullWidth
                 disabled={!prevSearchQuery}
                 onClick={() => {
@@ -319,7 +355,7 @@ export const Match = () => {
             </Grid>
             <Grid size={{ xs: 12, sm: 6 }}>
               <Button
-                variant="outlined"
+                variant="contained"
                 fullWidth
                 disabled={!nextSearchQuery}
                 onClick={() => {
@@ -400,7 +436,7 @@ export const Match = () => {
             justifyContent={"center"}
             sx={{ ...styled, maxWidth: 500, width: "100%" }}
           >
-            <StyledImg
+            <MatchedDogImg
               className={classes.matchedDogImg}
               src={matchedDog[0]?.img}
               alt="dog"
@@ -416,6 +452,7 @@ const PREFIX = "FetchMatch";
 
 const classes = {
   dogImg: `${PREFIX}-dog-image`,
+  dogImgMobile: `${PREFIX}-dog-image`,
   matchedDogImg: `${PREFIX}-matched-dog-image`,
 };
 
@@ -425,8 +462,20 @@ const StyledImg = styled("img")(() => ({
     width: "100%",
     borderRadius: "8px",
   },
+}));
+
+const MatchedDogImg = styled("img")(() => ({
   [`&.${classes.matchedDogImg}`]: {
     objectFit: "cover",
     width: "100%",
+  },
+}));
+
+const DogImgMobile = styled("img")(() => ({
+  [`&.${classes.dogImgMobile}`]: {
+    objectFit: "cover",
+    width: "200px",
+    height: "150px",
+    borderRadius: "8px",
   },
 }));

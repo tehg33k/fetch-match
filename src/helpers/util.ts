@@ -5,3 +5,9 @@ export const checkForEnterKey = (e: React.KeyboardEvent, callback: () => void) =
     callback();
   }
 };
+
+export const resolveObjectField = (path: string, obj: any) => {
+  return path.split('.').reduce((prev, curr) => {
+    return prev ? prev[curr] : null;
+  }, obj);
+};

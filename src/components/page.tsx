@@ -1,12 +1,16 @@
 import { styled } from "@mui/system";
-import { FC, ReactNode } from "react";
+import { useContext } from "react";
+import { UserContext } from "../context/user";
+import { Match } from "./match";
+import { Login } from "./login";
 
-export interface IPage {
-  children: ReactNode;
-}
-
-export const Page: FC<IPage> = ({ children }) => {
-  return <Wrapper>{children}</Wrapper>;
+export const Page = () => {
+  const { isLoggedIn } = useContext(UserContext);
+  return (
+    <>
+      <Wrapper>{isLoggedIn ? <Match /> : <Login />}</Wrapper>
+    </>
+  );
 };
 
 const Wrapper = styled("div")`

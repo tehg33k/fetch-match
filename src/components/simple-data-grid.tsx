@@ -5,7 +5,8 @@ import {
   GridCallbackDetails,
 } from "@mui/x-data-grid";
 
-import { Box, Typography, styled } from "@mui/material";
+import { Box, Typography, styled, useMediaQuery } from "@mui/material";
+import { MobileTable } from "./mobile-table";
 
 export interface SimpleDataGridProps
   extends Omit<
@@ -50,6 +51,47 @@ export const SimpleDataGrid = ({
   rowCount,
   ...props
 }: SimpleDataGridProps) => {
+    const isDesktop = useMediaQuery(
+      `(min-width: ${props?.mobileBreakPoint || "960"}px)`
+    );
+    if (!isDesktop && props.hasMobileLayout) {
+      return (
+        <Box>
+          {props?.rows?.length === 0 && (
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              height="100%"
+            >
+              <Typography variant="body1" textAlign="center" margin={0}>
+                {noResultsMessage ?? "There are no results to display."}
+              </Typography>
+            </Box>
+          )}
+          {props?.rows?.map((row: any, index) => (
+            <MobileTable
+              key={`mobile-table-${index}`}
+              fields={
+                props?.mobileProps?.showHandleActions
+                  ? props.columns
+                      .map((col) => {
+                        if (!col.headerName && col.field !== "actions") {
+                          return null;
+                        }
+                        return col;
+                      })
+                      .filter(Boolean)
+                  : (props.columns.filter((col) => col.headerName) as any)
+              }
+              row={row}
+              {...props.mobileProps}
+              {...props}
+            />
+          ))}
+        </Box>
+      );
+    }
   return (
     <GridWrapper key={rowCount}>
       <MuiDataGrid

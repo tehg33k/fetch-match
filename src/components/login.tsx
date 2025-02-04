@@ -9,7 +9,7 @@ import {
   CircularProgress,
   Typography,
 } from "@mui/material";
-import { FC, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { logIn } from "../fetch/auth";
 import { checkForEnterKey } from "../helpers";
 import { UserContext } from "../context/user";

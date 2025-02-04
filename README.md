@@ -1,50 +1,16 @@
-# React + TypeScript + Vite
+# fetchMatch
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![alt text](/public/screenshot.png)
 
-Currently, two official plugins are available:
+## Overview
+Match up with your favorite doggo! Simply enter your name and email address to login, select from a list of lovable pups and you will be matched with your adorable fur baby in seconds.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation
+From the root directory, run `npm install` to install all needed dependencies
 
-## Expanding the ESLint configuration
+Run `npm run dev` and preview the site locally in the localhost address thats displayed in your terminal (typically, localhost:5173).
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Environment files
+In order for the API calls to work and the app to function, please create a .env file in the root of the project with the base url assigned. 
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Example: VITE_API_BASE_URL=https://the-base-url.com

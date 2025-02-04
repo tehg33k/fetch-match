@@ -32,6 +32,7 @@ import {
 import { red } from "@mui/material/colors";
 import { useQuery } from "@tanstack/react-query";
 import CloseIcon from "@mui/icons-material/Close";
+import PetsIcon from "@mui/icons-material/Pets";
 import { UserBar } from "./userBar";
 
 export const Match = () => {
@@ -213,7 +214,12 @@ export const Match = () => {
       <Box width={"100%"} height={{ xs: "100%", lg: "100vh" }}>
         <UserBar />
         <Grid container p={2} pb={0} spacing={2} flexDirection={"row"}>
-          <Grid size={{ xs: 12, md: 3 }}>
+          <Grid
+            size={{ xs: 12, md: 3 }}
+            container
+            alignItems={"center"}
+            justifyContent={"center"}
+          >
             <Typography
               variant="h2"
               mb={1}
@@ -222,8 +228,16 @@ export const Match = () => {
                 fontSize: "2.75rem",
               }}
             >
-              fetchMatch
+              fetch<span style={{ fontWeight: "bold" }}>Match</span>
             </Typography>
+            <PetsIcon
+              sx={{
+                color: "#0bc8e1",
+                fontSize: 50,
+                mb: 2,
+                textShadow: "0 0 20px #00000059",
+              }}
+            />
           </Grid>
           <Grid container size={{ xs: 12, md: 9 }} alignItems={"center"}>
             <Grid size={{ xs: 12, md: 10 }}>

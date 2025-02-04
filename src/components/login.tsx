@@ -13,6 +13,7 @@ import { useContext, useState } from "react";
 import { logIn } from "../fetch/auth";
 import { checkForEnterKey } from "../helpers";
 import { UserContext } from "../context/user";
+import PetsIcon from "@mui/icons-material/Pets";
 
 export const Login = () => {
   const { setUser, setIsLoggedIn } = useContext(UserContext);
@@ -35,15 +36,27 @@ export const Login = () => {
   return (
     <>
       <Grid p={2}>
-        <Typography
-          variant="h1"
-          mb={1}
-          sx={{
-            textShadow: "0 0 20px #00000059",
-          }}
-        >
-          fetchMatch
-        </Typography>
+        <Box display={"flex"} justifyContent={"center"} alignItems={"center"}>
+          <Typography
+            variant="h1"
+            mb={1}
+            sx={{
+              textShadow: "0 0 20px #00000059",
+              fontSize: "5rem",
+            }}
+          >
+            fetch<span style={{ fontWeight: "bold" }}>Match</span>
+          </Typography>
+          <PetsIcon
+            sx={{
+              color: "#0bc8e1",
+              fontSize: 90,
+              mb: 2.75,
+              textShadow: "0 0 20px #00000059",
+            }}
+          />
+        </Box>
+
         <Card>
           <CardHeader
             title="Login"

@@ -238,7 +238,7 @@ export const Match = () => {
             <Grid size={{ xs: 12 }}>
               <Autocomplete
                 options={dogBreeds ?? []}
-                onChange={(e, newValue: any) => {
+                onChange={(_, newValue: any) => {
                   if (newValue && newValue.length > 0) {
                     setSearchQuery("");
                     setPrevSearchQuery("");
